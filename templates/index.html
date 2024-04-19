@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Resource Monitoring</h1>
+        <p class="metric cpu">CPU Usage: <span id="cpu-usage"></span>%</p>
+        <p class="metric ram">RAM Usage: <span id="ram-usage"></span>%</p>
+        <p class="metric storage">Storage Usage: <span id="storage-usage"></span>%</p>
+        <p class="metric uptime">Uptime: <span id="uptime"></span></p>
+        <!-- <p class="metric cost">Cost: $<span id="cost"></span></p> -->
+        <p class="metric cost"><span id="cost">Calculating...</span></p>
+        <!-- Display cost calculation details here -->
+        <!-- <p class="metric cost-details" id="cost-details"></p>  -->
+    </div>
+
+    <div style="text-align: center; font-family: 'Courier New', Courier, monospace; position: absolute; bottom: 60px; left: 0; right: 0; color: #ccc; ">
+        Made by Osama Yusuf
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function updateResourceUsage() {
+            $.get('/get_resource_usage', function (data) {
+                $('#cpu-usage').text(data.cpu_usage.toFixed(2));
+                $('#ram-usage').text(data.ram_usage.toFixed(2));
+                $('#storage-usage').text(data.storage_usage.toFixed(2));
+                $('#uptime').text(data.uptime);
+
+                // Color coding based on resource percentages
+                updateColorIndicator(data.cpu_usage, '.cpu');
+                updateColorIndicator(data.ram_usage, '.ram');
+                updateColorIndicator(data.storage_usage, '.storage');
+            });
+        }
+
+        // Function to update color indicators
+        function updateColorIndicator(percentage, selector) {
+            if (percentage > 65) {
+                $(selector).removeClass().addClass('metric ' + selector.substring(1) + ' red');
+            } else if (percentage < 40) {
+                $(selector).removeClass().addClass('metric ' + selector.substring(1) + ' green');
+            } else {
+                $(selector).removeClass().addClass('metric ' + selector.substring(1) + ' yellow');
+            }
+        }
+
+        $(document).ready(function () {
+            updateResourceUsage();
+            setInterval(updateResourceUsage, 2000); // Update every 2 seconds
+        });
+    </script>
+    <!-- Include your JavaScript file -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+
+</html>

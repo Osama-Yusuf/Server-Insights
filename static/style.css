@@ -1,0 +1,78 @@
+/* Reset some default styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #232323, #1a1a1a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Set a cool dark background color */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Style the container */
+.container {
+    background: rgba(255, 255, 255, 0.15); /* Glass-like background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 45px;
+    text-align: center;
+    width: 40%; /* 65% of the screen width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    /* max-width: 550px; Maximum width for responsiveness */
+}
+
+/* Style the heading */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff; /* White text color */
+}
+
+/* Style the metric values */
+.metric {
+    font-size: 18px;
+    margin: 15px 0; /* Increased margin for spacing */
+    color: #fff; /* White text color */
+}
+
+/* Add color for differentiation */
+
+
+/* Add hover effect */
+.metric {
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Add color-coded styles for different percentage ranges */
+.metric.red {
+    color: #ff5733; /* Red color */
+}
+
+.metric.green {
+    color: #00b894; /* Green color */
+}
+
+.metric.yellow {
+    color: #feca57; /* Yellow color */
+}
+
+/* Add hover effect for color-coded metrics */
+.metric.red:hover,
+.metric.green:hover,
+.metric.yellow:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
