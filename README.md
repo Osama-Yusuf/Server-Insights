@@ -26,7 +26,7 @@ Server-Insights is now running on [http://localhost:8080](http://localhost:8080)
 2. Navigate to the app directory and install the required packages:
 
    ```bash
-   pip install flask psutil
+   pip3 install -r requirements.txt
    ```
 
 3. Run the Flask app:
